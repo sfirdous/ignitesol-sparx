@@ -1,5 +1,7 @@
 # FastAPI app initialization
 from dotenv import load_dotenv
+load_dotenv()
+
 from app.database import engine
 from app.models import Base
 from fastapi import FastAPI
@@ -16,7 +18,7 @@ app = FastAPI(
 # include the books router
 app.include_router(books.router)
 @app.get("/")
-def root():
+def read_root():
     return {"message":"Welcome to Gutenberg Books API. Visit /docs for documentation."}
     
 

@@ -1,9 +1,11 @@
 # FastAPI app initialization
+from dotenv import load_dotenv
 from app.database import engine
 from app.models import Base
 from fastapi import FastAPI
 from .routers import books
 
+load_dotenv()
 
 app = FastAPI(
     title="Gutenberg Books API",

@@ -50,3 +50,10 @@ class BookSchema(BaseModel):
     class Config:
         from_attributes = True
 
+class BookListResponse(BaseModel):
+    """Response for book list with pagination info"""
+    count : int
+    page : int
+    page_size : int
+    total_pages : int
+    results : List[BookSchema]

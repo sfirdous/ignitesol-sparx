@@ -13,6 +13,8 @@ router = APIRouter(
 
 @router.get("/",response_model=schemas.BookListResponse)
 def get_books(
+    book_id: Optional[str] = Query(None, description="Filter by Gutenberg book ID's"),
+    mime_type: Optional[str] = Query(None, description="Filter by MIME types"),
     language : Optional[str] = Query(None,description="Filter by language code"),
     author : Optional[str] = Query(None,description="Filter by author name"),
     topic : Optional[str] = Query(None,description="Filter by subject/topic"),
@@ -23,26 +25,33 @@ def get_books(
     """Get books with optional filters and pagination
     Returns 25 books per page, sorted by download count"""
     
+    page_size = 25
+    
     # get the books
     books = crud.get_books(
-        db = db,
+        db=db,
+        book_id=book_id,
         language=language,
+        mime_type=mime_type,
         author=author,
         topic=topic,
-        title=title, 
-        page = page  
+        title=title,
+        page=page,
+        page_size=page_size 
     )
     
-    page_size = 25
+    
     # get total count
     total_count = crud.get_books_count(
-        db = db,
+        db=db,
+        book_id=book_id,
         language=language,
+        mime_type=mime_type,
         author=author,
         topic=topic,
         title=title
     )
-    total_pages = math.ceil(total_count/page_size)
+    total_pages = math.ceil(total_count/page_size) 
     
     
     return { "count" : total_count,

@@ -1,8 +1,20 @@
 # Database query functions
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
-from . import models
+from . import models,schemas
 
+products = [
+    schemas.ProductSchema(id=2,name='xyz',description = 'test'),
+    schemas.ProductSchema(id=6,name='2xyz',description = '2test'),
+    schemas.ProductSchema(id=8,name='3xyz',description = '3test'),
+]
+def get_products_by_id(id : int):
+    for product in products:
+        if product.id == id:
+            return product
+        
+def add_product(product:schemas.ProductSchema):
+    products.append(product)
 
 def get_books(
     db: Session,

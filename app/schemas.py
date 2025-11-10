@@ -2,6 +2,14 @@
 from pydantic import BaseModel
 from typing import Optional,List
 
+class ProductSchema(BaseModel):
+    id : int
+    name : str
+    description : str
+    
+    class Config:
+        from_attributes = True
+
 class AuthorSchema(BaseModel):
     name : Optional[str] = None
     birth_year : Optional[int] = None

@@ -12,5 +12,13 @@ def get_product(id:int):
 
 @router.post("/")
 def add_product(product : schemas.ProductSchema):
-    crud.add_product(product)
+    return crud.add_product(product)
+
+@router.put("/")
+def update_product(id:int,product : schemas.ProductSchema):
+    return crud.update_product(id,product)
+
+@router.delete("/")
+def delete_product(id:int):
+    return crud.delete_product(id)
     

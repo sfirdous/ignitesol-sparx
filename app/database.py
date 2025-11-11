@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is not set!")
+    raise ValueError("DATABASE _URL environment variable is not set!")
 
 engine = create_engine(DATABASE_URL,echo = False)
 

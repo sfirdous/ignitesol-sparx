@@ -24,6 +24,6 @@ def read_root():
 
 
 
-Base.metadata.create_all(bind = engine)
+Base.metadata.create_all(bind = engine)  # creates tables of sqlalchemy models that inherit Base
 
 

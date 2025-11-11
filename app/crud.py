@@ -12,9 +12,23 @@ def get_products_by_id(id : int):
     for product in products:
         if product.id == id:
             return product
+        else:
+            return "product not found"
         
 def add_product(product:schemas.ProductSchema):
     products.append(product)
+
+def update_product(id:int,product:schemas.ProductSchema):
+    for i in range(len(products)):
+        if products[i].id == id:
+            products[i] = product
+            return "Product Updated Sucessfully"
+
+def delete_product(id:int):
+    for product in products:
+        if product.id == id:
+            products.remove(product)
+            return "Product with f'{id}' ID removed sucessfully"
 
 def get_books(
     db: Session,
